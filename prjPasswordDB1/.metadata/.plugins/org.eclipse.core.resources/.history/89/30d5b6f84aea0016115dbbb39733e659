@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Avaliador de Segurança de Senha</title>
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/stylesheets/theme.css" />
+</head>
+<body>
+
+	<div class="container theme-showcase" role="main" style="border:1px solid #ddd">
+		<h4><b>AVALIADOR DE SEGURANÇA DE SENHA</b></h4>
+		<div class="jumbotron">
+	        <form action="/password" method="POST">
+				<input type="password" class="form-input" id="inputSenha" placeholder="Senha" name="password" onkeyup="chkPass(this.value);">
+				<br>
+				<div id="scoreBorder" style="display:inline-block; margin-right:10px; padding: 6px 12px; border-radius:5px">
+	               <div id="score" style="font-weight: bold;">0%</div>
+	               <input type="hidden" id="scoreHidden" name="score">
+	            </div>
+	            <div id="complexityBorder" style="display:inline-block; padding: 6px 12px; border-radius:5px">
+	               <div id="complexity" style="background-position: 0px center; font-weight: bold;">Muito Curta</div>
+	               <input type="hidden" id="complexityHidden" name="complexity">
+	            </div>
+			</form>
+      	</div>
+      	<table class="table table-hover table-bordered">
+		<th:block th:each="senha : ${senhas}">
+			<tr>
+				<td>Senha</td>
+				<td>Nota</td>
+				<td>Complexidade</td>
+			</tr>
+			<tr>
+				<td th:text="${senha.password}">Senha</td>
+				<td th:text="${senha.score}">Nota</td>
+				<td th:text="${senha.complexity}">Complexidade</td>
+			</tr>
+		</th:block>
+	</table>
+	</div>
+	
+	
+	<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/javascript/pwdmeter.js"></script>
+
+</body>
+</html>

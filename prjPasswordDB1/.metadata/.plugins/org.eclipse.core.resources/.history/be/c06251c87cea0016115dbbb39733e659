@@ -1,0 +1,13 @@
+package br.com.rf.password.db1.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import br.com.rf.password.db1.model.Senha;
+
+public interface Senhas extends JpaRepository<Senha, Long> {
+	
+	public Senha findByPasswordContainingIgnoreCase(String password);
+	
+}
